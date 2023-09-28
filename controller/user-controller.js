@@ -117,7 +117,7 @@ export const updatePassword = async (req, res) => {
 
 export const updateProfilePic = async (req, res) => {
 	const { id } = req.user;
-	const { newProfileUrl } = req.body;
+	const { newProfilePicture } = req.body;
 
 	try {
 		const foundUer = await userModel.findById({ _id: id });
@@ -130,7 +130,7 @@ export const updateProfilePic = async (req, res) => {
 		const updatedData = await userModel
 			.findByIdAndUpdate(
 				{ _id: foundUer._id },
-				{ $set: { profileUrl: newProfileUrl } },
+				{ $set: { profileUrl: newProfilePicture } },
 				{ new: true }
 			)
 			.select("-password");
